@@ -3,6 +3,7 @@ package es.ull.hpcg.matrixandroidapp;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -52,6 +53,10 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, String> {
         if (activity != null){
             TextView status = activity.findViewById(R.id.status);
             status.setText(activity.getString(R.string.working));
+            EditText input = activity.findViewById(R.id.matrix_size);
+            input.setEnabled(false);
+            input = activity.findViewById(R.id.matrix_module);
+            input.setEnabled(false);
             Button compute = activity.findViewById(R.id.compute);
             compute.setEnabled(false);
             Switch print = activity.findViewById(R.id.matrix_print);
@@ -68,6 +73,10 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, String> {
             status.setText(activity.getString(R.string.done));
             TextView result = activity.findViewById(R.id.result);
             result.setText(s);
+            EditText input = activity.findViewById(R.id.matrix_size);
+            input.setEnabled(true);
+            input = activity.findViewById(R.id.matrix_module);
+            input.setEnabled(true);
             Button compute = activity.findViewById(R.id.compute);
             compute.setEnabled(true);
             Switch print = activity.findViewById(R.id.matrix_print);
