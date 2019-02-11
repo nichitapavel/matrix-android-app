@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import matrix.lib.Matrix;
 import matrix.lib.TimeController;
@@ -30,6 +31,7 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
         boolean print = (integers[2] != 0);
         message.append(
                 String.format(
+                        Locale.ENGLISH,
                         "Input data:\nMatrix size: %d\t Matrix module: %d\t Matrix print: %b\n",
                         integers[0], integers[1], print
                 )
