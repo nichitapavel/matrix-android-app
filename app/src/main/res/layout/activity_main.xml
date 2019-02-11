@@ -81,6 +81,24 @@
         app:layout_constraintStart_toEndOf="@+id/matrix_module_text"
         tools:targetApi="o" />
 
+    <EditText
+        android:id="@+id/matrix_timing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/matrix_timing"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compute"
+        tools:targetApi="o" />
+
     <Switch
         android:id="@+id/matrix_print"
         android:layout_width="0dp"
@@ -114,7 +132,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compute">
+        app:layout_constraintTop_toBottomOf="@+id/matrix_timing">
 
         <ScrollView
             android:layout_width="wrap_content"

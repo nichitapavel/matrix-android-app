@@ -9,4 +9,5 @@
     <string name="matrix_module_hint">Integer number</string>
     <string name="working">Working...</string>
     <string name="done">Done.</string>
+    <string name="matrix_timing">Time needed for computation</string>
 </resources>
