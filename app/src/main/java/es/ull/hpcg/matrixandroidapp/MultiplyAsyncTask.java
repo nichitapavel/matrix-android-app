@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import matrix.lib.HTTPData;
 import matrix.lib.Matrix;
+import matrix.lib.Operation;
 import matrix.lib.TimeController;
 
 
@@ -26,6 +28,9 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
     @Override
     protected List<String> doInBackground(Integer... integers) {
         TimeController timeCon = new TimeController();
+
+        // TODo Add field in UI
+        HTTPData req = new HTTPData("http://10.209.3.126:5000/message");
         StringBuilder message = new StringBuilder();
 
         boolean print = (integers[2] != 0);
@@ -38,17 +43,35 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
         );
 
         Matrix matrix_a = new Matrix(integers[0]);
-        matrix_a.fill(integers[1], timeCon);
         timeCon.setName("Matrix fill A");
+        timeCon.snapStart();
+        req.setData(timeCon.getStart(), Operation.AS);
+        req.sendData();
+        matrix_a.fill(integers[1]);
+        timeCon.snapFinish();
+        req.setData(timeCon.getFinish(), Operation.AF);
+        req.sendData();
         message.append(timeCon);
 
         Matrix matrix_b = new Matrix(integers[0]);
-        matrix_b.fill(integers[1], timeCon);
         timeCon.setName("Matrix fill B");
+        timeCon.snapStart();
+        req.setData(timeCon.getStart(), Operation.BS);
+        req.sendData();
+        matrix_b.fill(integers[1]);
+        timeCon.snapFinish();
+        req.setData(timeCon.getFinish(), Operation.BF);
+        req.sendData();
         message.append(timeCon);
 
-        Matrix matrix_computed = matrix_a.multiply(matrix_b, timeCon);
         timeCon.setName("Matrix compute");
+        timeCon.snapStart();
+        req.setData(timeCon.getStart(), Operation.XS);
+        req.sendData();
+        Matrix matrix_computed = matrix_a.multiply(matrix_b);
+        timeCon.snapFinish();
+        req.setData(timeCon.getFinish(), Operation.XF);
+        req.sendData();
         message.append(timeCon);
 
         String matrixResult = "";
