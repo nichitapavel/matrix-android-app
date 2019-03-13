@@ -35,6 +35,9 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
 
         // TODO Add field in UI
         HTTPData req = new HTTPData(values[3]);
+        req.setName(
+                new HostInfo().getName()
+        );
         StringBuilder message = new StringBuilder();
 
 
