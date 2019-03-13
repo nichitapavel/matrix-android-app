@@ -9,4 +9,6 @@
     <string name="working">Working&#8230;</string>
     <string name="done">Done.</string>
     <string name="matrix_timing">Time needed for computation</string>
+    <string name="http_endpoint">HTTP endpoint</string>
+    <string name="http_endpoint_hint">http://192.168.2.65:5000/message</string>
 </resources>

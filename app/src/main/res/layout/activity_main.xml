@@ -10,10 +10,10 @@
         android:id="@+id/matrix_size_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/matrix_size_text"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,33 +21,43 @@
         android:id="@+id/matrix_module_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/matrix_module"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matrix_size_text" />
 
     <TextView
         android:id="@+id/matrix_print_text"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/matrix_print"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matrix_module_text" />
+
+    <TextView
+        android:id="@+id/http_endpoint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/http_endpoint"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matrix_print_text" />
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matrix_print_text" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/compute"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/matrix_size"
@@ -60,6 +70,7 @@
         android:hint="@string/matrix_size_hint"
         android:importantForAutofill="no"
         android:inputType="numberPassword"
+        android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/matrix_size_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -76,27 +87,10 @@
         android:hint="@string/matrix_module_hint"
         android:importantForAutofill="no"
         android:inputType="numberPassword"
+        android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/matrix_module_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/matrix_module_text"
-        tools:targetApi="o" />
-
-    <EditText
-        android:id="@+id/matrix_timing"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="@string/matrix_timing"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:singleLine="false"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compute"
         tools:targetApi="o" />
 
     <Switch
@@ -109,17 +103,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/matrix_print_text" />
 
+    <EditText
+        android:id="@+id/http_endpoint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/http_endpoint_hint"
+        android:importantForAutofill="no"
+        android:inputType="textUri"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/http_endpoint_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/http_endpoint_text"
+        app:layout_constraintTop_toBottomOf="@+id/matrix_print"
+        tools:targetApi="o" />
+
     <Button
         android:id="@+id/compute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:focusable="auto"
         android:onClick="compute"
         android:text="@string/button_compute"
-        app:layout_constraintBaseline_toBaselineOf="@+id/status"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/http_endpoint" />
 
+
+    <EditText
+        android:id="@+id/matrix_timing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/matrix_timing"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compute"
+        tools:targetApi="o" />
 
     <HorizontalScrollView
         android:id="@+id/scrollView"
@@ -141,7 +173,8 @@
             <TextView
                 android:id="@+id/result"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="12sp" />
         </ScrollView>
     </HorizontalScrollView>
 
