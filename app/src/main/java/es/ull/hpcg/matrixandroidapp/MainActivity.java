@@ -23,22 +23,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void compute(View view) {
         EditText matrixSizeEditText = findViewById(R.id.matrix_size);
-        int matrixSize = Integer.parseInt(
-                matrixSizeEditText.getText().toString()
-        );
+        String matrixSize = matrixSizeEditText.getText().toString();
 
         EditText matrixModuleEditText = findViewById(R.id.matrix_module);
-        int matrixModule = Integer.parseInt(
-                matrixModuleEditText.getText().toString()
-        );
+        String matrixModule = matrixModuleEditText.getText().toString();
+
+        EditText httpEndpointEditText = findViewById(R.id.http_endpoint);
+        String httpEndpoint = httpEndpointEditText.getText().toString();
+
         Switch printSwitch = findViewById(R.id.matrix_print);
+
         boolean matrixPrint = printSwitch.isChecked();
-        int asyncPrint = matrixPrint ? 1 : 0;
+        String asyncPrint = matrixPrint ? "true" : "false";
 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
         MultiplyAsyncTask task = new MultiplyAsyncTask(this);
-        task.execute(matrixSize, matrixModule, asyncPrint);
+        task.execute(matrixSize, matrixModule, asyncPrint, httpEndpoint);
     }
 }

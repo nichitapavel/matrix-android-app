@@ -18,7 +18,7 @@ import matrix.lib.Operation;
 import matrix.lib.TimeController;
 
 
-public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
+public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
     WeakReference<Activity> mWeakActivity;
 
     public MultiplyAsyncTask(Activity activity) {
@@ -26,39 +26,43 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
     }
 
     @Override
-    protected List<String> doInBackground(Integer... integers) {
+    protected List<String> doInBackground(String... values) {
         TimeController timeCon = new TimeController();
 
-        // TODo Add field in UI
-        HTTPData req = new HTTPData("http://10.209.3.126:5000/message");
+        int matrixSize = Integer.parseInt(values[0]);
+        int matrixModule = Integer.parseInt(values[1]);
+        boolean print = (values[2] != "false");
+
+        // TODO Add field in UI
+        HTTPData req = new HTTPData(values[3]);
         StringBuilder message = new StringBuilder();
 
-        boolean print = (integers[2] != 0);
+
         message.append(
                 String.format(
                         Locale.ENGLISH,
-                        "Input data:\nMatrix size: %d\t Matrix module: %d\t Matrix print: %b\n",
-                        integers[0], integers[1], print
+                        "Input data:\nMatrix size: %s\t Matrix module: %s\t Matrix print: %b\n",
+                        values[0], values[1], print
                 )
         );
 
-        Matrix matrix_a = new Matrix(integers[0]);
+        Matrix matrix_a = new Matrix(matrixSize);
         timeCon.setName("Matrix fill A");
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.AS);
         req.sendData();
-        matrix_a.fill(integers[1]);
+        matrix_a.fill(matrixModule);
         timeCon.snapFinish();
         req.setData(timeCon.getFinish(), Operation.AF);
         req.sendData();
         message.append(timeCon);
 
-        Matrix matrix_b = new Matrix(integers[0]);
+        Matrix matrix_b = new Matrix(matrixSize);
         timeCon.setName("Matrix fill B");
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.BS);
         req.sendData();
-        matrix_b.fill(integers[1]);
+        matrix_b.fill(matrixModule);
         timeCon.snapFinish();
         req.setData(timeCon.getFinish(), Operation.BF);
         req.sendData();
@@ -75,7 +79,7 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
         message.append(timeCon);
 
         String matrixResult = "";
-        if (integers[2] == 1) {
+        if (print) {
             matrixResult = "Matrix A:\n".concat(
                     matrix_a.toString()
             );
@@ -102,14 +106,20 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
     protected void onPreExecute() {
         Activity activity = mWeakActivity.get();
         if (activity != null){
-            TextView status = activity.findViewById(R.id.status);
-            status.setText(activity.getString(R.string.working));
+            TextView text = activity.findViewById(R.id.status);
+            text.setText(activity.getString(R.string.working));
+            text = activity.findViewById(R.id.matrix_timing);
+            text.setText("");
+            text = activity.findViewById(R.id.result);
+            text.setText("");
             EditText input = activity.findViewById(R.id.matrix_size);
             input.setEnabled(false);
             input = activity.findViewById(R.id.matrix_module);
             input.setEnabled(false);
             Button compute = activity.findViewById(R.id.compute);
             compute.setEnabled(false);
+            input = activity.findViewById(R.id.http_endpoint);
+            input.setEnabled(false);
             Switch print = activity.findViewById(R.id.matrix_print);
             print.setEnabled(false);
         }
@@ -127,6 +137,8 @@ public class MultiplyAsyncTask extends AsyncTask<Integer, Void, List<String>> {
             EditText input = activity.findViewById(R.id.matrix_size);
             input.setEnabled(true);
             input = activity.findViewById(R.id.matrix_module);
+            input.setEnabled(true);
+            input = activity.findViewById(R.id.http_endpoint);
             input.setEnabled(true);
             Button compute = activity.findViewById(R.id.compute);
             compute.setEnabled(true);
