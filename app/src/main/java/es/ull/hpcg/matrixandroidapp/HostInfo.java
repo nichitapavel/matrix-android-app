@@ -10,6 +10,7 @@ public class HostInfo implements IHostInfo {
         StringBuilder hostname = new StringBuilder();
         hostname.append(Build.DEVICE)
                 .append("***")
+                // TODO deprecated, update to Build.getSerial()
                 .append(Build.SERIAL)
                 .append("***")
                 .append(Build.ID)
