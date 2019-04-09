@@ -51,7 +51,7 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
                 )
         );
 
-        AMatrix matrix_a = new MatrixInt(matrixSize);
+        AMatrix matrix_a = new MatrixFloat(matrixSize);
         timeCon.setName("Matrix fill A");
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.AS);
@@ -62,7 +62,7 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
         req.sendData();
         message.append(timeCon);
 
-        AMatrix matrix_b = new MatrixInt(matrixSize);
+        AMatrix matrix_b = new MatrixFloat(matrixSize);
         timeCon.setName("Matrix fill B");
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.BS);
@@ -84,7 +84,7 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.XS);
         req.sendData();
-        AMatrix matrix_computed = matrix_a.multiply(matrix_b);
+        AMatrix matrix_computed = matrix_a.multiplyRoundUp(matrix_b);
         timeCon.snapFinish();
         req.setData(timeCon.getFinish(), Operation.XF);
         req.sendData();
