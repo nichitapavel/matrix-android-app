@@ -15,6 +15,7 @@ import java.util.Locale;
 import matrix.lib.AMatrix;
 import matrix.lib.HTTPData;
 import matrix.lib.MatrixFloat;
+import matrix.lib.MatrixInt;
 import matrix.lib.Operation;
 import matrix.lib.TimeController;
 
@@ -50,7 +51,7 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
                 )
         );
 
-        AMatrix matrix_a = new MatrixFloat(matrixSize);
+        AMatrix matrix_a = new MatrixInt(matrixSize);
         timeCon.setName("Matrix fill A");
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.AS);
@@ -61,7 +62,7 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
         req.sendData();
         message.append(timeCon);
 
-        AMatrix matrix_b = new MatrixFloat(matrixSize);
+        AMatrix matrix_b = new MatrixInt(matrixSize);
         timeCon.setName("Matrix fill B");
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.BS);
