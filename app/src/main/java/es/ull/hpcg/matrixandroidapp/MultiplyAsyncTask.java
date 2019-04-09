@@ -84,7 +84,7 @@ public class MultiplyAsyncTask extends AsyncTask<String, Void, List<String>> {
         timeCon.snapStart();
         req.setData(timeCon.getStart(), Operation.XS);
         req.sendData();
-        AMatrix matrix_computed = matrix_a.multiplyRoundUp(matrix_b);
+        AMatrix matrix_computed = matrix_a.multiply(matrix_b);
         timeCon.snapFinish();
         req.setData(timeCon.getFinish(), Operation.XF);
         req.sendData();
